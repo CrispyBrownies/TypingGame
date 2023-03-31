@@ -1,11 +1,6 @@
 import GameDisplay from './components/GameDisplay';
 import './App.css';
 import { useEffect, useState } from 'react';
-import wordRender from './components/WordEngine';
-// import ReactDOM from 'react-dom';
-import ReactDOM from 'react-dom/client';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // This is coming from serverside, dont need to set anything
 const gameData = {
@@ -16,11 +11,17 @@ const gameData = {
 
 const wordLists = {
   active: [{ name: "example",
-      positionX: 50,
-      positionY: 50,
+      posX: 50,
+      posY: 50,
       speed: 1,
       lifespan: 5
-  }],
+  },
+  { name: "bob",
+  posX: 0,
+  posY: 0,
+  speed: 1,
+  lifespan: 5
+}],
   queue: {
     coming: {
       lifespan:10
@@ -38,7 +39,6 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      wordRender(root, wordLists.active);
       console.log("ping")
     }, 1000/gameData.framerate)
     return () => clearInterval(interval)
@@ -49,9 +49,11 @@ function App() {
     style={{
       display:"flex",
       alignItems:"center",
-      justifyContent:"center"
+      justifyContent:"center",
+      top:"2vh",
+      position:"relative"
     }}>
-      <GameDisplay playerData={playerData} gameData={gameData} wordList={wordLists}/>
+      <GameDisplay playerData={playerData} gameData={gameData} wordLists={wordLists}/>
     </div>
   );
 }

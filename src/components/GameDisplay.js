@@ -7,6 +7,9 @@ import GameRender from "./GameRender";
 import HealthBar from "./HealthBar";
 
 const GameDisplay = ({playerData, gameData, wordLists}) => {
+
+    // console.log(wordLists)
+
     return (
         <div className="gameDisplay" 
         style={{
@@ -16,7 +19,7 @@ const GameDisplay = ({playerData, gameData, wordLists}) => {
             <PlayerInfo playerData={playerData}/>
             <HealthBar playerData={playerData}/>
             <GameInfo gameData={gameData}/>
-            <GameRender wordList={wordLists}/>
+            <GameRender wordLists={wordLists}/>
             <Chatbox/>
         </div>
     )

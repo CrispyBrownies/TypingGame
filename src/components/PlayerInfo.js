@@ -6,7 +6,7 @@ const PlayerInfo = ({playerData}) => {
     return (
         <div className="playerName font-link" 
         style={{
-            // fontFamily:"Montserrat",
+            fontFamily:"Montserrat",
             fontSize:"40px"
         }}>
             {playerData.name}

@@ -10,7 +10,7 @@ const HealthBar = ({playerData}) => {
         style={{
             height:"30px",
             display:"flex",
-            justifyContent:'center'
+            justifyContent:'center',
         }}>
             <div className="healthBarTotal"
             style={{
@@ -21,7 +21,8 @@ const HealthBar = ({playerData}) => {
                 borderRadius:"5px",
                 display: "grid",
                 alignContent:"center",
-                flexWrap:"wrap"
+                flexWrap:"wrap",
+                border:"1px solid black"
             }}>
                 <div className="activeHealth"
             style={{
