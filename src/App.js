@@ -1,8 +1,8 @@
 import GameDisplay from './components/GameDisplay';
 import './App.css';
 import { useEffect, useState } from 'react';
+import { advanceWords } from './components/WordEngine';
 
-// This is coming from serverside, dont need to set anything
 const gameData = {
   gameState: "onGoing",
   timer: 120,
@@ -11,17 +11,12 @@ const gameData = {
 
 const wordLists = {
   active: [{ name: "example",
-      posX: 50,
-      posY: 50,
-      speed: 1,
+      posX: 0,
+      posY: 0,
+      speed: .1,
       lifespan: 5
-  },
-  { name: "bob",
-  posX: 0,
-  posY: 0,
-  speed: 1,
-  lifespan: 5
-}],
+  }
+],
   queue: {
     coming: {
       lifespan:10
@@ -37,12 +32,35 @@ function App() {
     health: 10,
   })
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      console.log("ping")
-    }, 1000/gameData.framerate)
-    return () => clearInterval(interval)
+  const [wordLists, setWordLists] = useState({
+    active: [{ name: "example",
+        posX: 0,
+        posY: 0,
+        speed: .1,
+        lifespan: 5
+    }
+  ],
+    sent: [{
+      coming: {
+        lifespan:10
+      }
+    }
+  ],
+    incoming: [{
+      incoming: {
+        lifespan:10
+      }
+    }]
   })
+  
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log("ping");
+  //     advanceWords(wordLists, setWordLists);
+  //   }, 1000/gameData.framerate)
+  //   return () => clearInterval(interval)
+  // })
+  // console.log(wordLists)
 
   return (
     <div className="App"
@@ -53,7 +71,7 @@ function App() {
       top:"2vh",
       position:"relative"
     }}>
-      <GameDisplay playerData={playerData} gameData={gameData} wordLists={wordLists}/>
+      <GameDisplay playerData={playerData} gameData={gameData} wordLists={wordLists} setWordLists={setWordLists}/>
     </div>
   );
 }

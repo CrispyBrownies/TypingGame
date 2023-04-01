@@ -3,6 +3,14 @@ import { IconButton, InputAdornment, TextField } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import CheckWord from "./DictionaryAPI";
 
+function CheckLength(word) {
+    if ((word.length) > 14) {
+        return false
+    } else {
+        return true
+    }
+}
+
 const Chatbox = () => {
 
     const [typeField, setTypeField] = useState("");
@@ -16,7 +24,10 @@ const Chatbox = () => {
     const sendWord = (e) => {
         if (e.key === 'Enter') {
             if (typeField !== "") {
-                valid = CheckWord(typeField);
+                CheckWord(typeField).then((res) => {
+                valid = res;
+                valid = valid && CheckLength(typeField);
+                console.log(valid)})
                 setTypeField("")
             }
         }

@@ -1,18 +1,18 @@
 
 const apiURL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 
-function CheckWord(word) {
+async function CheckWord(word) {
     try {
-        fetch(apiURL+word)
-        .then((res) => {
-            if (res.status !== 200) {
-                return false
-            } else {
-                return true
-            }
-        })
+      const response = await fetch(apiURL + word);
+      if (response.status !== 200) {
+        return false;
+      } else {
+        return true;
+      }
     } catch (error) {
+      console.error(error);
+      return false;
     }
-}
+  }
 
 export default CheckWord

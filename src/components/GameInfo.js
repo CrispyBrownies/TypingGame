@@ -9,7 +9,8 @@ const GameInfo = ({gameData}) => {
         style={{
             fontFamily: "Montserrat",
             fontSize: "75px",
-            fontWeight: "bold"
+            fontWeight: "bold",
+            textAlign:"center"
         }}>
             {gameData.timer}
         </div>

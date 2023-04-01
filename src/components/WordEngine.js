@@ -1,27 +1,37 @@
 
-function Word({name, posX, posY}) {
-  return <div className="word" 
+import '../App.css';
+
+function Word({word}) {
+  let posX = word.posX;
+  let posY = word.posY;
+  let speed = word.speed;
+  console.log(posY)
+
+  return <div className="word montCap"
       style={{
-        fontFamily:"montserrat",
-        width:"100px",
-        height:"20px",
-        top:`${posY}px`,
+        top:`${posY}%`,
         left:`${posX}px`,
-        position:"relative",
-        textTransform:"uppercase",
+        position:"absolute",
         fontWeight:"bold",
-        fontSize:"30px"
+        fontSize:"30px",
+        display:"inline-block",
+        textAlign:"left"
       }}>
-      {name}
+      {word.name}
       </div>
 }
 
-function wordRender(activeWords) {
+export function wordRender(activeWords) {
   const words = activeWords?.map((item) =>
-    <Word key={item.name} name={item.name} posX={item.posX} posY={item.posY}/>
+    <Word key={item.name} word={item}/>
   );
     return (
-      <div className="wordRain">
+      <div className="wordRain"
+      style={{
+        width:"100%",
+        height:"100%",
+        position:"relative"
+      }}>
         {words}
       </div>
     )
@@ -31,4 +41,22 @@ function activateWord(wordLists) {
   //somethin here
 }
 
-export default wordRender
+// export function updateWords(wordLists) {
+//   return (
+//     wordRender()
+//   )
+// }
+
+export function advanceWords(wordLists, setWordLists) {
+  let activeWords = [...wordLists.active];
+  for (let i=0; i<activeWords.length; i++) {
+    activeWords[i].posY += activeWords[i].speed * 1;
+    if (activeWords[i].posY > 100) {
+      activeWords[i].posY = 0
+    }
+  }
+  setWordLists({
+    ...wordLists,
+    active: activeWords,
+  })
+}

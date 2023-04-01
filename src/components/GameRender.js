@@ -1,9 +1,12 @@
 
 import { BorderTop } from "@mui/icons-material";
 import React from "react";
-import wordRender from "./WordEngine";
+import {advanceWords, wordRender} from "./WordEngine";
 
 const GameRender = ({wordLists}) => {
+
+    advanceWords(wordLists)
+
     return (
         <div className="gameRender"
             style={{width:"40vw", 
