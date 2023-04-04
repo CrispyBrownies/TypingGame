@@ -1,11 +1,32 @@
 
 import { BorderTop } from "@mui/icons-material";
-import React from "react";
-import {advanceWords, wordRender} from "./WordEngine";
+import React, { useEffect, useState } from "react";
+import WordRender from "./WordEngine"
 
-const GameRender = ({wordLists}) => {
+//placeholder code until we figure out backend
+const testWords = [{ name: "example",
+        posX: 0,
+        posY: 0,
+        speed: .1,
+        lifespan: 5
+    }]
 
-    advanceWords(wordLists)
+const GameRender = () => {
+
+    const [activeWords, setActiveWords] = useState([{ name: "example",
+    posX: 0,
+    posY: 0,
+    speed: .1,
+    lifespan: 5
+}])
+    //useState for incoming words
+    //useState for sent words
+
+    // setActiveWords(testWords)
+    // console.log(activeWords)
+    // useEffect(() =>{
+    //     advanceWords
+    // },[activeWords])
 
     return (
         <div className="gameRender"
@@ -17,7 +38,7 @@ const GameRender = ({wordLists}) => {
             margin:"0px",
             borderRadius:"5px",
             }}>
-            {wordRender(wordLists.active)}
+            <WordRender activeWords={activeWords} setActiveWords={setActiveWords}/>
         </div>
     )
 }

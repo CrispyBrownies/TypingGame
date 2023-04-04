@@ -9,21 +9,6 @@ const gameData = {
   framerate: 30,
 };
 
-const wordLists = {
-  active: [{ name: "example",
-      posX: 0,
-      posY: 0,
-      speed: .1,
-      lifespan: 5
-  }
-],
-  queue: {
-    coming: {
-      lifespan:10
-    }
-  }
-}
-
 function App() {
 
   const [playerData, setPlayerData] = useState({
@@ -31,36 +16,6 @@ function App() {
     maxHealth: 10,
     health: 10,
   })
-
-  const [wordLists, setWordLists] = useState({
-    active: [{ name: "example",
-        posX: 0,
-        posY: 0,
-        speed: .1,
-        lifespan: 5
-    }
-  ],
-    sent: [{
-      coming: {
-        lifespan:10
-      }
-    }
-  ],
-    incoming: [{
-      incoming: {
-        lifespan:10
-      }
-    }]
-  })
-  
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     console.log("ping");
-  //     advanceWords(wordLists, setWordLists);
-  //   }, 1000/gameData.framerate)
-  //   return () => clearInterval(interval)
-  // })
-  // console.log(wordLists)
 
   return (
     <div className="App"
@@ -71,7 +26,7 @@ function App() {
       top:"2vh",
       position:"relative"
     }}>
-      <GameDisplay playerData={playerData} gameData={gameData} wordLists={wordLists} setWordLists={setWordLists}/>
+      <GameDisplay playerData={playerData} gameData={gameData}/>
     </div>
   );
 }

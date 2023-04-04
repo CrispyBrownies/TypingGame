@@ -6,7 +6,7 @@ import Chatbox from "./Chatbox";
 import GameRender from "./GameRender";
 import HealthBar from "./HealthBar";
 
-const GameDisplay = ({playerData, gameData, wordLists, setWordLists}) => {
+const GameDisplay = ({playerData, gameData}) => {
 
     // console.log(wordLists)
 
@@ -19,7 +19,7 @@ const GameDisplay = ({playerData, gameData, wordLists, setWordLists}) => {
             <PlayerInfo playerData={playerData}/>
             <HealthBar playerData={playerData}/>
             <GameInfo gameData={gameData}/>
-            <GameRender wordLists={wordLists} setWordLists={setWordLists}/>
+            <GameRender/>
             <Chatbox/>
         </div>
     )
