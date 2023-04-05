@@ -10,7 +10,7 @@ function Word({word}) {
   return <div className="word montCap"
       style={{
         top:`${posY}%`,
-        left:`${posX}px`,
+        left:`${posX}%`,
         position:"absolute",
         fontWeight:"bold",
         fontSize:"30px",
@@ -23,20 +23,21 @@ function Word({word}) {
 
 function advanceWords(activeWords, setActiveWords) {
 
-  // console.log(setActiveWords)
-
   let activeCopy = [...activeWords]
+  let randX = Math.floor(Math.random() * 90)
 
   for (let i=0; i<activeCopy.length; i++) {
+    // console.log(activeCopy)
     activeCopy[i].posY += activeCopy[i].speed * 1;
     if (activeCopy[i].posY > 100) {
       activeCopy[i].posY = 0
+      activeCopy[i].posX = randX
     }
   }
   setActiveWords(activeCopy)
 }
 
-const WordRender = ({activeWords, setActiveWords}) => {
+const WordRender = ({activeWords, setActiveWords, incomingWords, setIncomingWords}) => {
 
   const words = activeWords?.map((item) =>
     <Word key={item.name} word={item}/>
@@ -45,6 +46,7 @@ const WordRender = ({activeWords, setActiveWords}) => {
   useEffect(() => {
     const interval = setInterval(() => {
       advanceWords(activeWords, setActiveWords)
+      activateWords(activeWords, setActiveWords, incomingWords, setIncomingWords)
     }, 1000/30)
     return () => clearInterval(interval)
   },[])
@@ -61,8 +63,10 @@ const WordRender = ({activeWords, setActiveWords}) => {
     )
 }
 
-function activateWord(wordLists) {
-  //somethin here
+function activateWords(activeWords, setActiveWords, incomingWords, setIncomingWords) {
+  let newActive = [...activeWords, ...incomingWords]
+  setActiveWords(newActive)
+  setIncomingWords([])
 }
 
 export default WordRender

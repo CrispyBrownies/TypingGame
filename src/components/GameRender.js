@@ -13,20 +13,23 @@ const testWords = [{ name: "example",
 
 const GameRender = () => {
 
+    let randX = Math.floor(Math.random() * 90)
+
     const [activeWords, setActiveWords] = useState([{ name: "example",
     posX: 0,
     posY: 0,
     speed: .1,
     lifespan: 5
 }])
-    //useState for incoming words
-    //useState for sent words
 
-    // setActiveWords(testWords)
-    // console.log(activeWords)
-    // useEffect(() =>{
-    //     advanceWords
-    // },[activeWords])
+    const [incomingWords, setIncomingWords] = useState([{ name: "incoming",
+    posX: randX,
+    posY: 0,
+    speed: .1,
+    lifespan: 5
+}])
+
+    //useState for sent words
 
     return (
         <div className="gameRender"
@@ -38,7 +41,7 @@ const GameRender = () => {
             margin:"0px",
             borderRadius:"5px",
             }}>
-            <WordRender activeWords={activeWords} setActiveWords={setActiveWords}/>
+            <WordRender activeWords={activeWords} setActiveWords={setActiveWords} incomingWords={incomingWords} setIncomingWords={setIncomingWords}/>
         </div>
     )
 }
